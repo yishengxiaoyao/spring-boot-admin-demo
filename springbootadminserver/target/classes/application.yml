@@ -1,0 +1,33 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: springbootadminserver
+  boot:
+    admin:
+      notify:
+        mail:
+          to: 644875343@qq.com
+  #mail:
+  #  host: smtp.gmail.com
+  #  port: 587
+  security:
+    user:
+      name: admin
+      password: test
+# eureka配置
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      startup: ${random.int}
+      user.name: admin
+      user.password: test
+    status-page-url-path: /actuator/info
+  client:
+    healthcheck:
+      enabled: true
+    registry-fetch-interval-seconds: 5
+    service-url:
+      default-zone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/

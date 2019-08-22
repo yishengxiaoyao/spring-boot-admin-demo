@@ -1,0 +1,37 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+spring:
+  application:
+    name: springbootadminclient
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090
+        username: admin
+        password: test
+        instance:
+          metadata:
+            tags:
+              environment: test
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
+  jmx:
+    enabled: true
+  security:
+    user:
+      name: admin
+      password: test
+      roles: USER
+
+logging:
+  file: "/var/log/sample-boot-application.log"
+  pattern:
+    file: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+server:
+  port: 8085
